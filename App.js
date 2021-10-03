@@ -8,10 +8,11 @@ import SignupScreen from './src/screens/SignupScreen';
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
+import {Provider as AuthProvider} from './src/context/AuthContext';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-const IsSignedIn = true;
+const IsSignedIn = false;
 
 const trackListFlow = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -30,7 +31,7 @@ const App = () => {
           <Tab.Screen name="Account" component={AccountScreen} />
         </Tab.Navigator>
       ) : (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Signup" component={SignupScreen} />
           <Stack.Screen name="Signin" component={SigninScreen} />
         </Stack.Navigator>
@@ -39,4 +40,8 @@ const App = () => {
   );
 };
 
-export default App;
+export default () => (
+  <AuthProvider>
+    <App />
+  </AuthProvider>
+);
