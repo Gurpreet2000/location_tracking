@@ -8,6 +8,7 @@ import SignupScreen from './src/screens/SignupScreen';
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
+import SplashScreen from './src/screens/SplashScreen';
 import {
   Provider as AuthProvider,
   Context as AuthContext,
@@ -24,10 +25,11 @@ const trackListFlow = () => (
 );
 
 const App = () => {
-  const {
-    state: {token},
-  } = useContext(AuthContext);
-  const isSignedIn = token ? true : false;
+  const {state} = useContext(AuthContext);
+  const isSignedIn = state.token ? true : false;
+
+  if (state.isLoading) return <SplashScreen />;
+
   return (
     <NavigationContainer>
       {isSignedIn ? (
