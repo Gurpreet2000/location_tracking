@@ -19,8 +19,8 @@ const Tab = createMaterialBottomTabNavigator();
 
 const trackListFlow = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
-    <Stack.Screen name="TrackList" component={TrackListScreen} />
-    <Stack.Screen name="TrackDetail" component={TrackDetailScreen} />
+    <Stack.Screen name="List" component={TrackListScreen} />
+    <Stack.Screen name="Detail" component={TrackDetailScreen} />
   </Stack.Navigator>
 );
 
@@ -34,8 +34,8 @@ const App = () => {
     <NavigationContainer>
       {isSignedIn ? (
         <Tab.Navigator>
-          <Tab.Screen name="trackListFlow" component={trackListFlow} />
-          <Tab.Screen name="TrackCreate" component={TrackCreateScreen} />
+          <Tab.Screen name="Tracks" component={trackListFlow} />
+          <Tab.Screen name="Create" component={TrackCreateScreen} />
           <Tab.Screen name="Account" component={AccountScreen} />
         </Tab.Navigator>
       ) : (
