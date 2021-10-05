@@ -13,6 +13,7 @@ import {
   Provider as AuthProvider,
   Context as AuthContext,
 } from './src/context/AuthContext';
+import {Provider as LocationProvider} from './src/context/LocationContext';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -49,7 +50,9 @@ const App = () => {
 };
 
 export default () => (
-  <AuthProvider>
-    <App />
-  </AuthProvider>
+  <LocationProvider>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </LocationProvider>
 );
