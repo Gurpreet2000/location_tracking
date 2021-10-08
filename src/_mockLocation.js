@@ -2,7 +2,7 @@ import * as Location from 'expo-location';
 
 const tenMetersWithDegrees = 0.001;
 
-const getLoaction = increment => {
+const getLocation = increment => {
   return {
     timestamp: 1000000,
     coords: {
@@ -19,10 +19,12 @@ const getLoaction = increment => {
 
 let counter = 0;
 
+console.log();
+
 setInterval(() => {
   Location.EventEmitter.emit('Expo.locationChanged', {
     watchId: Location._getCurrentWatchId(),
-    location: getLoaction(counter),
+    location: getLocation(counter),
   });
   counter++;
 }, 1000);
