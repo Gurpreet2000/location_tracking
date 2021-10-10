@@ -14,14 +14,15 @@ import {
   Context as AuthContext,
 } from './src/context/AuthContext';
 import {Provider as LocationProvider} from './src/context/LocationContext';
+import {Provider as TrackProvider} from './src/context/TrackContext';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const trackListFlow = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
-    <Stack.Screen name="List" component={TrackListScreen} />
-    <Stack.Screen name="Detail" component={TrackDetailScreen} />
+    <Stack.Screen name="TrackList" component={TrackListScreen} />
+    <Stack.Screen name="TrackDetail" component={TrackDetailScreen} />
   </Stack.Navigator>
 );
 
@@ -36,8 +37,8 @@ const App = () => {
       {isSignedIn ? (
         <Tab.Navigator>
           <Tab.Screen name="Tracks" component={trackListFlow} />
-          <Tab.Screen name="Create" component={TrackCreateScreen} />
-          <Tab.Screen name="Account" component={AccountScreen} />
+          <Tab.Screen name="TrackCreate" component={TrackCreateScreen} />
+          <Tab.Screen name="TrackAccount" component={AccountScreen} />
         </Tab.Navigator>
       ) : (
         <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -50,9 +51,11 @@ const App = () => {
 };
 
 export default () => (
-  <LocationProvider>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </LocationProvider>
+  <TrackProvider>
+    <LocationProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </LocationProvider>
+  </TrackProvider>
 );
